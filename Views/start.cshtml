@@ -1,0 +1,12 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using nackademin24_umbraco.Views
+
+@inherits UmbracoViewPage<StartPageViewModel>
+
+@{
+	Layout = "root.cshtml";
+}
+
+<h1>@Html.Raw(Model.Heading)</h1>
+
+<h1>@Model.StartPage.Id</h1>

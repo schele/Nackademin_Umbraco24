@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+
+@inherits UmbracoViewPage<IBase>
+
+@{
+	Layout = null;
+}
+
+<html>
+	<head><title></title>
+		<meta name="description" value="@Html.Raw(Model.MetaDescription)" />	
+	</head>
+	<body>
+		@RenderBody()
+	</body>
+</html>
