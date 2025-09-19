@@ -1,7 +1,7 @@
 ﻿using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
-namespace nackademin24_umbraco.Views
+namespace nackademin24_umbraco.Models.ViewModels
 {
     public class StartPageViewModel : PageViewModel<Start>
     {
