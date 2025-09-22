@@ -22,6 +22,9 @@
 		<Content Update="appsettings - Copy.Development.json">
 			<DependentUpon>appsettings.json</DependentUpon>
 		</Content>
+		<Content Update="appsettings - Copy.schele-desktop.json">
+		  <DependentUpon>appsettings.json</DependentUpon>
+		</Content>
 	</ItemGroup>
 
 	<PropertyGroup>

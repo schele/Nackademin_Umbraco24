@@ -33,6 +33,15 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "schele-desktop"
       }
+    },
+    "schele-laptop": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:44363;http://localhost:16976",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "schele-laptop"
+      }
     }
   }
 }
