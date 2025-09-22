@@ -1,12 +1,29 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @using nackademin24_umbraco.Models.ViewModels
 
 @inherits UmbracoViewPage<StartPageViewModel>
 
 @{
 	Layout = "root.cshtml";
+
+	var blockGrid = Model.Value<BlockGridModel>("content");
 }
 
-<h1>@Html.Raw(Model.Heading)</h1>
+@if (blockGrid != null && blockGrid.Any())
+{
+	foreach (var block in blockGrid)
+	{
+		if (block.Content != null)
+		{
+			var contentTypeAlias = block.Content.ContentType.Alias;
 
-<h1>@Model.StartPage.Id</h1>
+			switch (contentTypeAlias)
+			{
+				case "carouselBlock":
+					@await Html.PartialAsync("~/views/partials/blockgrid/CarouselBlock.cshtml", block.Content)
+					break;
+			}
+		}
+	}
+}

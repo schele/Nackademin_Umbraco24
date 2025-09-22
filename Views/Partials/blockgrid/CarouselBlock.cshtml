@@ -1,0 +1,41 @@
+﻿@inject IPublishedValueFallback publishedValueFallback
+
+@model CarouselBlock
+
+@{
+    var slides = Model.Images
+        .OfType<IPublishedContent>()
+        .Select(p => new CarouselPage(p, publishedValueFallback))
+        .ToList();
+}
+
+<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @for (int i = 0; i < slides.Count(); i++)
+        {
+            var active = (i == 0) ? "active" : null;
+            var ariaCurrent = (i == 0) ? "true" : null;
+                
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="@i" class="@active" 
+            aria-label="Slide @(i+1)" aria-current="@ariaCurrent"></button>     
+        }            
+    </div>
+    <div class="carousel-inner">
+        @for (int i = 0; i < slides.Count(); i++)
+        {
+            var active = (i == 0) ? "active" : null;
+                
+            <div class="carousel-item @active">
+                <img src="@slides[i].Image.Url()" class="carousel-poster" />
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
