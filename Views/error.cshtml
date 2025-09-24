@@ -1,5 +1,12 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@using nackademin24_umbraco.Models.ViewModels
+
+@inherits UmbracoViewPage<ErrorPageViewModel>
+
 @{
 	Layout = "root.cshtml";
 }
+
+<h1>ERROR PAGE</h1>
+
+<button value="">@Umbraco.GetDictionaryValue("deleteButton")</button>
