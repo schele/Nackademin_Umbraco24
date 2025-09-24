@@ -1,3 +1,6 @@
+using nackademin24_umbraco.Business.ScheduledJobs;
+using nackademin24_umbraco.Business.ScheduledJobs.Interfaces;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 var environmentName = builder.Environment.EnvironmentName;
@@ -9,6 +12,8 @@ builder.CreateUmbracoBuilder()
     .AddWebsite()
     .AddComposers()
     .Build();
+
+builder.Services.AddScoped<IMoviesJob, MoviesJob>();
 
 WebApplication app = builder.Build();
 
