@@ -1,5 +1,7 @@
 using nackademin24_umbraco.Business.ScheduledJobs;
 using nackademin24_umbraco.Business.ScheduledJobs.Interfaces;
+using nackademin24_umbraco.Business.Services;
+using nackademin24_umbraco.Business.Services.Interfaces;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.CreateUmbracoBuilder()
     .Build();
 
 builder.Services.AddScoped<IMoviesJob, MoviesJob>();
+builder.Services.AddScoped<ISitemapService, SitemapService>();
 
 WebApplication app = builder.Build();
 
