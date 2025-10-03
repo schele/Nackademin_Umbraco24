@@ -65,6 +65,7 @@ namespace nackademin24_umbraco.Business.Services
 
                     if (movie != null)
                     {
+                        //todo send in language dynamically
                         movie.Culture = "sv";
 
                         var imdbId = CreateMoviePage(movie);
