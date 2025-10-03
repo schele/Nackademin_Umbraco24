@@ -1,0 +1,132 @@
+﻿@page "/OmdbSearchPage"
+
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@using nackademin24_umbraco.Business.Services.Interfaces
+@using nackademin24_umbraco.Models
+@using nackademin24_umbraco.Models.Blazor
+
+@code
+{
+    [Inject] private IOmdbService? _omdbService { get; set; }
+
+    private string SearchQuery { get; set; } = string.Empty;
+    private OmdbSearchModel SearchModel = new OmdbSearchModel();
+    private List<Movie>? Movies = [];
+    private bool IsSearching = false;
+    private Dictionary<string, string?> _movieUrls = new();
+
+    private async Task FetchMoviesAsync()
+    {
+        if (string.IsNullOrWhiteSpace(SearchModel.Query))
+        {
+            return;
+        }
+        else
+        {
+            Movies?.Clear();
+            IsSearching = true;
+
+            try
+            {
+                await Task.Delay(750);
+
+                Movies = await _omdbService.SearchAsync(SearchModel);
+            }
+            finally
+            {
+                IsSearching = false;
+            }
+        }
+    }
+
+    private async void AddMovie(string id)
+    {
+        var url = await _omdbService.AddMovieAsync(id);
+        _movieUrls[id] = url;
+
+        StateHasChanged();
+    }
+}
+
+<style type="text/css">
+    .poster-wrapper {
+        width: 100%;
+        aspect-ratio: 2/3;
+        overflow: hidden;
+    }
+
+        .poster-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: unset;
+        }
+
+    a.clean-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+<div class="container py-5">
+    <EditForm Model="@SearchModel" OnValidSubmit="FetchMoviesAsync">
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col-md-8 offset-md-2">
+                    <div class="input-group">
+                        <InputText id="searchInput" class="form-control search-input" name="query" type="search"
+                                   placeholder="Search for a movie" aria-label="Search"
+                                   @bind-Value="SearchModel.Query" disabled="@IsSearching" />
+                        <button type="submit" class="input-group-text search-button" id="submitButton" disabled="@IsSearching">
+                            @if (IsSearching)
+                            {
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            }
+                            else
+                            {
+                                <i class="fas fa-search"></i>
+                            }
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </EditForm>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
+        @foreach (var item in Movies)
+        {
+            if (!_movieUrls.ContainsKey(item.ImdbID))
+            {
+                var url = _omdbService.MoviePageUrl(item.ImdbID);
+                _movieUrls[item.ImdbID] = url;
+            }
+
+            var movieUrl = _movieUrls[item.ImdbID];
+
+            <div class="col">
+                <div class="card h-100 d-flex flex-column shadow-sm text-center">
+                    <a href="@movieUrl" class="clean-link d-flex flex-column flex-grow-1">
+                        <div class="poster-wrapper">
+                            <img src="@item.Poster" class="card-img-top img-fluid" alt="Movie Poster">
+                        </div>
+                        <div class="card-body flex-grow-1">
+                            <h5 class="card-title">@item.Title</h5>
+                        </div>
+                    </a>
+                    <div class="card-footer mt-auto d-flex justify-content-between align-items-center" style="min-height: 45px;">
+                        <small class="text-body-secondary">@item.Year · @item.Type</small>
+                        @if (movieUrl == null)
+                        {
+                            <button type="button" class="btn btn-sm btn-outline-success" @onclick="@(() => AddMovie(item.ImdbID))">+</button>
+                        }
+                        else
+                        {
+                            <span></span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

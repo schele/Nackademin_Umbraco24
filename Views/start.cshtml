@@ -1,16 +1,20 @@
 ﻿@using Umbraco.Cms.Core.Models.Blocks
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @using nackademin24_umbraco.Models.ViewModels
+@using nackademin24_umbraco.Shared
 
 @inherits UmbracoViewPage<StartPageViewModel>
 
 @{
 	Layout = "root.cshtml";
 
-	var blockGrid = Model.Value<BlockGridModel>("content");
+	//var blockGrid = Model.Value<BlockGridModel>("content");
 }
 
-@if (blockGrid != null && blockGrid.Any())
+<component type="typeof(OmdbSearchPage)" render-mode="Server" />
+
+
+@* @if (blockGrid != null && blockGrid.Any())
 {
 	foreach (var block in blockGrid)
 	{
@@ -26,4 +30,4 @@
 			}
 		}
 	}
-}
+} *@
