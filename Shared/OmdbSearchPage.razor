@@ -16,6 +16,9 @@
     private bool IsSearching = false;
     private Dictionary<string, string?> _movieUrls = new();
 
+    // Track which movies are being added
+    private HashSet<string> _addingMovies = new();
+
     private async Task FetchMoviesAsync()
     {
         if (string.IsNullOrWhiteSpace(SearchModel.Query))
@@ -30,7 +33,6 @@
             try
             {
                 await Task.Delay(750);
-
                 Movies = await _omdbService.SearchAsync(SearchModel);
             }
             finally
@@ -40,12 +42,21 @@
         }
     }
 
-    private async void AddMovie(string id)
+    private async Task AddMovie(string id)
     {
-        var url = await _omdbService.AddMovieAsync(id);
-        _movieUrls[id] = url;
+        _addingMovies.Add(id);
+        StateHasChanged(); // show spinner immediately
 
-        StateHasChanged();
+        try
+        {
+            var url = await _omdbService.AddMovieAsync(id);
+            _movieUrls[id] = url;
+        }
+        finally
+        {
+            _addingMovies.Remove(id);
+            StateHasChanged(); // re-render
+        }
     }
 }
 
@@ -108,7 +119,7 @@
                 <div class="card h-100 d-flex flex-column shadow-sm text-center">
                     <a href="@movieUrl" class="clean-link d-flex flex-column flex-grow-1">
                         <div class="poster-wrapper">
-                            <img src="@item.Poster" class="card-img-top img-fluid" alt="Movie Poster">
+                            <img src="@item.Poster" class="card-img-top img-fluid" alt="Movie Poster" onerror="this.onerror=null;this.src='/_framework/no-image-found.png';">
                         </div>
                         <div class="card-body flex-grow-1">
                             <h5 class="card-title">@item.Title</h5>
@@ -118,7 +129,19 @@
                         <small class="text-body-secondary">@item.Year · @item.Type</small>
                         @if (movieUrl == null)
                         {
-                            <button type="button" class="btn btn-sm btn-outline-success" @onclick="@(() => AddMovie(item.ImdbID))">+</button>
+                            <button type="button"
+                                    class="btn btn-sm btn-outline-success"
+                                    @onclick="@(() => AddMovie(item.ImdbID))"
+                                    disabled="@_addingMovies.Contains(item.ImdbID)">
+                                @if (_addingMovies.Contains(item.ImdbID))
+                                {
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="fw-bold" aria-hidden="true">+</span>
+                                }
+                            </button>
                         }
                         else
                         {
