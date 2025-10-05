@@ -115,14 +115,11 @@ namespace nackademin24_umbraco.Business.Services
                 moviePage.SetValue("released", movie.Released);
                 moviePage.SetValue("runtime", movie.Runtime);
 
-
                 var genres = movie.Genre?
                     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                     ?? [];
                 
                 moviePage.SetValue("genre", JsonConvert.SerializeObject(genres));
-
-                //moviePage.SetValue("genre", movie.Genre);
                 moviePage.SetValue("director", movie.Director);
                 moviePage.SetValue("writer", movie.Writer);
                 moviePage.SetValue("actors", movie.Actors);
