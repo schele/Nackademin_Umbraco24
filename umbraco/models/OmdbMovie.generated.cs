@@ -50,12 +50,124 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Actors
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("actors")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Actors => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "actors");
+
+		///<summary>
+		/// Awards
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("awards")]
+		public virtual string Awards => this.Value<string>(_publishedValueFallback, "awards");
+
+		///<summary>
+		/// Box Office
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("boxOffice")]
+		public virtual string BoxOffice => this.Value<string>(_publishedValueFallback, "boxOffice");
+
+		///<summary>
+		/// Country
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("country")]
+		public virtual string Country => this.Value<string>(_publishedValueFallback, "country");
+
+		///<summary>
+		/// Director
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("director")]
+		public virtual string Director => this.Value<string>(_publishedValueFallback, "director");
+
+		///<summary>
+		/// DVD
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("dvd")]
+		public virtual string Dvd => this.Value<string>(_publishedValueFallback, "dvd");
+
+		///<summary>
+		/// Genre
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("genre")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Genre => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "genre");
+
+		///<summary>
 		/// Imdb Id
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("imdbId")]
 		public virtual string ImdbId => this.Value<string>(_publishedValueFallback, "imdbId");
+
+		///<summary>
+		/// Imdb Rating
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("imdbRating")]
+		public virtual string ImdbRating => this.Value<string>(_publishedValueFallback, "imdbRating");
+
+		///<summary>
+		/// Imdb Votes
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("imdbVotes")]
+		public virtual string ImdbVotes => this.Value<string>(_publishedValueFallback, "imdbVotes");
+
+		///<summary>
+		/// Language
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("language")]
+		public virtual string Language => this.Value<string>(_publishedValueFallback, "language");
+
+		///<summary>
+		/// Metascore
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metascore")]
+		public virtual string Metascore => this.Value<string>(_publishedValueFallback, "metascore");
+
+		///<summary>
+		/// Plot
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("plot")]
+		public virtual string Plot => this.Value<string>(_publishedValueFallback, "plot");
+
+		///<summary>
+		/// Poster
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("poster")]
+		public virtual string Poster => this.Value<string>(_publishedValueFallback, "poster");
+
+		///<summary>
+		/// Production
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("production")]
+		public virtual string Production => this.Value<string>(_publishedValueFallback, "production");
 
 		///<summary>
 		/// Rated
@@ -66,12 +178,60 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Rated => this.Value<string>(_publishedValueFallback, "rated");
 
 		///<summary>
+		/// Released
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("released")]
+		public virtual string Released => this.Value<string>(_publishedValueFallback, "released");
+
+		///<summary>
+		/// Response
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("response")]
+		public virtual string Response => this.Value<string>(_publishedValueFallback, "response");
+
+		///<summary>
+		/// Runtime
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("runtime")]
+		public virtual string Runtime => this.Value<string>(_publishedValueFallback, "runtime");
+
+		///<summary>
 		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("title")]
 		public virtual string Title => this.Value<string>(_publishedValueFallback, "title");
+
+		///<summary>
+		/// Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("type")]
+		public virtual string Type => this.Value<string>(_publishedValueFallback, "type");
+
+		///<summary>
+		/// Website
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("website")]
+		public virtual string Website => this.Value<string>(_publishedValueFallback, "website");
+
+		///<summary>
+		/// Writer
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "14.3.4+d3c1443")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("writer")]
+		public virtual string Writer => this.Value<string>(_publishedValueFallback, "writer");
 
 		///<summary>
 		/// Year

@@ -111,8 +111,36 @@ namespace nackademin24_umbraco.Business.Services
 
                 moviePage.SetValue("title", movie.Title, movie.Culture);
                 moviePage.SetValue("year", movie.Year);
-                moviePage.SetValue("imdbid", movie.ImdbID);
                 moviePage.SetValue("rated", movie.Rated, movie.Culture);
+                moviePage.SetValue("released", movie.Released);
+                moviePage.SetValue("runtime", movie.Runtime);
+
+
+                var genres = movie.Genre?
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    ?? [];
+                
+                moviePage.SetValue("genre", JsonConvert.SerializeObject(genres));
+
+                //moviePage.SetValue("genre", movie.Genre);
+                moviePage.SetValue("director", movie.Director);
+                moviePage.SetValue("writer", movie.Writer);
+                moviePage.SetValue("actors", movie.Actors);
+                moviePage.SetValue("plot", movie.Plot);
+                moviePage.SetValue("language", movie.Language);
+                moviePage.SetValue("country", movie.Country);
+                moviePage.SetValue("awards", movie.Awards);
+                moviePage.SetValue("poster", movie.Poster);
+                moviePage.SetValue("metascore", movie.Metascore);
+                moviePage.SetValue("imdbrating", movie.ImdbRating);
+                moviePage.SetValue("imdbvotes", movie.ImdbVotes);
+                moviePage.SetValue("imdbid", movie.ImdbID);
+                moviePage.SetValue("type", movie.Type);
+                moviePage.SetValue("dvd", movie.DVD);
+                moviePage.SetValue("boxoffice", movie.BoxOffice);
+                moviePage.SetValue("production", movie.Production);
+                moviePage.SetValue("website", movie.Website);
+                moviePage.SetValue("response", movie.Response);
 
                 var save = _contentService.Save(moviePage);
 
