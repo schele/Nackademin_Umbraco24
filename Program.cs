@@ -28,6 +28,16 @@ app.MapBlazorHub();
 
 await app.BootUmbracoAsync();
 
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value;
+    if (path != "/" && path.EndsWith("/"))
+    {
+        context.Response.Redirect(path.TrimEnd('/'));
+        return;
+    }
+    await next();
+});
 
 app.UseUmbraco()
     .WithMiddleware(u =>
@@ -40,5 +50,6 @@ app.UseUmbraco()
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });
+
 
 await app.RunAsync();

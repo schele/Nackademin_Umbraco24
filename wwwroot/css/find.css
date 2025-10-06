@@ -1,0 +1,16 @@
+﻿.poster-wrapper {
+    width: 100%;
+    aspect-ratio: 2/3;
+    overflow: hidden;
+}
+
+.poster-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: unset;
+}
+
+a.clean-link {
+    text-decoration: none;
+    color: inherit;
+}
