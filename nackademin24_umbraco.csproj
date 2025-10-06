@@ -6,6 +6,9 @@
 		<CompressionEnabled>false</CompressionEnabled>
 		<!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
 	</PropertyGroup>
+	<ItemGroup>
+	  <Content Remove="wwwroot\_framework\blazor.web.js" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Cultiv.Hangfire" Version="4.1.3" />
