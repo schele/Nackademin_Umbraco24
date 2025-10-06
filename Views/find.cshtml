@@ -1,0 +1,12 @@
+﻿@using nackademin24_umbraco.Models.ViewModels
+@using nackademin24_umbraco.Shared
+
+@inherits UmbracoViewPage<FindPageViewModel>
+
+@{
+	Layout = "root.cshtml";
+
+	var cultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<component type="typeof(FindPage)" render-mode="Server" param-CultureName="@cultureName" />

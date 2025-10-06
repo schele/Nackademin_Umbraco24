@@ -20,6 +20,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IMoviesJob, MoviesJob>();
 builder.Services.AddScoped<ISitemapService, SitemapService>();
 builder.Services.AddScoped<IOmdbService, OmdbService>();
+builder.Services.AddScoped<IFindService, FindService>();
 
 WebApplication app = builder.Build();
 
