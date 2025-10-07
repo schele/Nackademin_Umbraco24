@@ -60,6 +60,7 @@
 
         try
         {
+            await Task.Delay(750);
             var url = await _omdbService.AddMovieAsync(id);
             _movieUrls[id] = url;
         }

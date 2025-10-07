@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using nackademin24_umbraco.Models.Blazor
+@using Umbraco.Cms.Web.Common
+
+@inject UmbracoHelper _umbracoHelper
+
+<div class="container">
+    <!-- Search Form -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <EditForm Model="@FindModel" OnValidSubmit="FindContentAsync">
+                <div class="input-group search-box">
+                    <InputText id="searchInput"
+                               class="form-control search-input"
+                               name="query"
+                               type="search"
+                               placeholder="@_umbracoHelper.GetDictionaryValue("SearchForContent", CultureInfo)"
+                               aria-label="Search"
+                               @bind-Value="FindModel.Query"
+                               disabled="@IsSearching" />
+                    <button type="submit"
+                            class="input-group-text search-button"
+                            id="submitButton"
+                            disabled="@IsSearching">
+                        @if (IsSearching)
+                        {
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        }
+                        else
+                        {
+                            <i class="fas fa-search"></i>
+                        }
+                    </button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+    <!-- Search Results -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            @if (Pages?.Any() == true)
+            {
+                <h3>@_umbracoHelper.GetDictionaryValue("SearchResultFor", CultureInfo) "@FindModel.Query":</h3>
+                <div class="list-group">
+                    @foreach (var item in Pages)
+                    {
+                        <div class="list-group-item mb-3 border rounded">
+                            <h5 class="mb-1">
+                                <a href="@item.Url" class="text-decoration-none text-primary">@item.Name</a>
+                            </h5>
+                            <small class="text-muted">
+                                @_umbracoHelper.GetDictionaryValue("Updated", CultureInfo): @item.UpdateDate
+                            </small>
+                        </div>
+                    }
+                </div>
+            }
+            else if (HasSearched && !IsSearching && !string.IsNullOrWhiteSpace(FindModel.Query))
+            {
+                <div class="alert alert-warning mt-3" role="alert">
+                    @_umbracoHelper.GetDictionaryValue("NoResultsFound", CultureInfo) "@FindModel.Query"
+                </div>
+            }
+        </div>
+    </div>
+</div>
