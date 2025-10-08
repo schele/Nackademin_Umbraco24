@@ -105,7 +105,7 @@ namespace nackademin24_umbraco.Business.Services
             {
                 var content = umbracoContext.Content;
                 var settingsPage = content?.GetAtRoot().DescendantsOrSelf<Settings>().FirstOrDefault();
-                var moviePage = _contentService.Create(movie.Title, settingsPage.MoviesContainer.Id, nameof(OmdbMovie).ToLower());
+                var moviePage = _contentService.Create(movie.Title, settingsPage.MoviesContainer.Id, nameof(Movie).ToLower());
 
                 moviePage.SetCultureName(movie.Title, movie.Culture);
 
