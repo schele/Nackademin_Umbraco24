@@ -18,7 +18,7 @@
     private CultureInfo CultureInfo { get; set; }
     private string SearchQuery { get; set; } = string.Empty;
     private OmdbSearchModel SearchModel = new OmdbSearchModel();
-    private List<Movie>? Movies = [];
+    private List<OmdbMovie>? Movies = [];
     private bool IsSearching = false;
     private Dictionary<string, string?> _movieUrls = new();
 

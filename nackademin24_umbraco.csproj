@@ -7,6 +7,9 @@
 		<!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
 	</PropertyGroup>
 	<ItemGroup>
+	  <Compile Remove="umbraco\models\OmdbMovie.generated.cs" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Remove="wwwroot\_framework\blazor.web.js" />
 	</ItemGroup>
 

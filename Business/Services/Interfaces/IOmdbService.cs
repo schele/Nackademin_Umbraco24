@@ -4,7 +4,7 @@ namespace nackademin24_umbraco.Business.Services.Interfaces
 {
     public interface IOmdbService
     {
-        Task<List<Movie>> SearchAsync(OmdbSearchModel search);
+        Task<List<OmdbMovie>> SearchAsync(OmdbSearchModel search);
 
         Task<string?> AddMovieAsync(string id);
 

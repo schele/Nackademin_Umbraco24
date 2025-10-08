@@ -6,7 +6,7 @@ namespace nackademin24_umbraco.Models.Blazor
     public class Root
     {
         [JsonProperty("Search")]
-        public List<Movie> Search { get; set; }
+        public List<OmdbMovie> Search { get; set; }
 
         [JsonProperty("totalResults")]
         public string TotalResults { get; set; }
@@ -15,7 +15,7 @@ namespace nackademin24_umbraco.Models.Blazor
         public string Response { get; set; }
     }
 
-    public class Movie
+    public class OmdbMovie
     {
         [JsonProperty("Title")]
         public string Title { get; set; }

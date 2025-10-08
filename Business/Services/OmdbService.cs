@@ -25,7 +25,7 @@ namespace nackademin24_umbraco.Business.Services
             _publishedContentQuery = publishedContentQuery;
         }
 
-        public async Task<List<Movie>> SearchAsync(OmdbSearchModel search)
+        public async Task<List<OmdbMovie>> SearchAsync(OmdbSearchModel search)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace nackademin24_umbraco.Business.Services
                 var settingsPage = content?.GetAtRoot().DescendantsOrSelf<Settings>().FirstOrDefault();
                 var moviesContainer = _publishedContentQuery.Content(settingsPage.MoviesContainer.Id);
                 var movie = moviesContainer?
-                    .Children<OmdbMovie>()
+                    .Children<Movie>()
                     .FirstOrDefault(x => x.ImdbId == imdbId);
 
                 return movie?.Url();
