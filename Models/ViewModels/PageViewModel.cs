@@ -4,7 +4,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 public class PageViewModel<T> : IBase where T : IBase
 {
-    protected readonly T Content;
+    public readonly T Content;
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
 
     public PageViewModel(T content, IUmbracoContextAccessor umbracoContextAccessor)
