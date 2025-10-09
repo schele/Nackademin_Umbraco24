@@ -1,0 +1,118 @@
+﻿/* Movie Detail Styles */
+.movie-detail-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.poster-image-detail {
+    width: 100%;
+    max-width: 300px; /* Adjust the max width for the poster */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.movie-title-detail {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.movie-year-detail {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.movie-runtime-detail,
+.movie-plot-detail,
+.movie-director-detail,
+.movie-actors-detail {
+    font-size: 1em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.text-warning {
+    color: gold;
+}
+
+/* Form Styling */
+.commentForm {
+    margin-top: 40px;
+}
+
+.form-control {
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.rating {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    direction: rtl;
+}
+
+    .rating input[type="radio"] {
+        display: none;
+    }
+
+    .rating label {
+        font-size: 1.5em;
+        color: #ddd;
+        cursor: pointer;
+    }
+
+    .rating input[type="radio"]:checked ~ label {
+        color: gold;
+    }
+
+/* Submit Button Styling */
+#submitButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    #submitButton:disabled {
+        background-color: #ccc;
+    }
+
+#spinner {
+    display: inline-block;
+}
+
+/* Adjust the spacing for smaller screens */
+@@media (max-width: 768px) {
+    .poster-image-detail {
+        max-width: 100%;
+    }
+
+    .movie-title-detail {
+        font-size: 1.5em;
+    }
+
+    .commentForm {
+        margin-top: 20px;
+    }
+
+    #submitButton {
+        font-size: 1em;
+        padding: 8px 16px;
+    }
+}

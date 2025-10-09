@@ -1,0 +1,26 @@
+﻿.rating {
+    display: inline-flex;
+    flex-direction: row-reverse; /* left-to-right */
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+/* Highlight selected and previous stars */
+.rating input:checked ~ label {
+    color: gold;
+}
+
+/* Hover effect */
+.rating label:hover,
+.rating label:hover ~ label {
+    color: gold;
+}
