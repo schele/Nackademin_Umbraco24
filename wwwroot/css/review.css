@@ -1,6 +1,6 @@
 ﻿.rating {
     display: inline-flex;
-    flex-direction: row-reverse; /* left-to-right */
+    flex-direction: row; /* left-to-right */
 }
 
 .rating input {
