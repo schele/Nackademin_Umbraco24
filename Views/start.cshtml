@@ -1,5 +1,4 @@
-﻿@using Umbraco.Cms.Core.Models.Blocks
-@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
 @using nackademin24_umbraco.Models.ViewModels
 @using nackademin24_umbraco.Shared
 
@@ -8,27 +7,7 @@
 @{
 	Layout = "root.cshtml";
 
-	//var blockGrid = Model.Value<BlockGridModel>("content");
 	var cultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
 }
 
 <component type="typeof(OmdbSearchPage)" render-mode="Server" param-CultureName="@cultureName" />
-
-
-@* @if (blockGrid != null && blockGrid.Any())
-{
-	foreach (var block in blockGrid)
-	{
-		if (block.Content != null)
-		{
-			var contentTypeAlias = block.Content.ContentType.Alias;
-
-			switch (contentTypeAlias)
-			{
-				case "carouselBlock":
-					@await Html.PartialAsync("~/views/partials/blockgrid/CarouselBlock.cshtml", block.Content)
-					break;
-			}
-		}
-	}
-} *@
