@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@using nackademin24_umbraco.Business.Services.Interfaces
+@using nackademin24_umbraco.Models.Blazor
+@using System.ComponentModel.DataAnnotations
+
+@code
+{
+    [Inject] private IReviewService _reviewService { get; set; }
+
+    [Parameter] public string ImdbId { get; set; }
+
+    private List<Review> Reviews = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Reviews = await _reviewService.GetReviewsAsync(ImdbId);
+
+        _reviewService.ReviewAdded += OnReviewAdded;
+    }
+
+    private void OnReviewAdded(Review review)
+    {
+        if (review.ImdbId == ImdbId)
+        {
+            Reviews.Insert(0, review);
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    public void Dispose()
+    {
+        _reviewService.ReviewAdded -= OnReviewAdded;
+    }
+}
+
+<div class="reviews-section mt-4">
+    <h3>User Reviews</h3>
+
+    @if (Reviews.Any())
+    {
+        @foreach (var review in Reviews)
+        {
+            <div class="review-item border-bottom mb-3 pb-3">
+                <p><strong>@review.Name</strong> says:</p>
+                <p>@review.Comment</p>
+                <div class="review-meta">
+                    <span class="text-warning">
+                        @for (int i = 0; i < review.Rating; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                    </span>
+                    <span class="text-muted">| @review.Date.ToString("MMM dd, yyyy")</span>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-muted">No reviews available.</p>
+    }
+</div>

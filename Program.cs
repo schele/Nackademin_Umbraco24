@@ -1,7 +1,9 @@
+using Microsoft.Data.SqlClient;
 using nackademin24_umbraco.Business.ScheduledJobs;
 using nackademin24_umbraco.Business.ScheduledJobs.Interfaces;
 using nackademin24_umbraco.Business.Services;
 using nackademin24_umbraco.Business.Services.Interfaces;
+using NPoco;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +19,28 @@ builder.CreateUmbracoBuilder()
 
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddScoped<IDatabase>(sp =>
+{
+    var configuration = sp.GetRequiredService<IConfiguration>();
+    var connectionString = configuration.GetConnectionString("umbracoDbDSN");
+    var db = new Database(connectionString, DatabaseType.SqlServer2012, SqlClientFactory.Instance);
+
+    return db;
+});
+
 builder.Services.AddScoped<IMoviesJob, MoviesJob>();
 builder.Services.AddScoped<ISitemapService, SitemapService>();
 builder.Services.AddScoped<IOmdbService, OmdbService>();
 builder.Services.AddScoped<IFindService, FindService>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 
 WebApplication app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var reviewService = scope.ServiceProvider.GetRequiredService<IReviewService>();
+    await reviewService.EnsureTableExistsAsync();
+}
 
 app.MapBlazorHub();
 

@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@using nackademin24_umbraco.Business.Services.Interfaces
+@using nackademin24_umbraco.Models.Blazor
+@using System.ComponentModel.DataAnnotations
+
+@code
+{
+    [Inject] private IReviewService? _reviewService { get; set; }
+
+    [Parameter] public string ImdbId { get; set; } = string.Empty;
+
+    private Review Review = new();
+
+    private async Task SubmitReview()
+    {
+        Review.ImdbId = ImdbId;
+
+        await _reviewService.AddReviewAsync(Review);
+
+        Review = new Review();
+    }
+}
+
+<link href="css/review.css" rel="stylesheet" />
+
+<div class="card shadow-lg border-0 rounded mb-4 commentForm mt-5">
+    <EditForm Model="@Review" OnValidSubmit="SubmitReview">
+        <div class="card-body p-4">
+            <h4 class="card-title mb-4">Add a comment and a rating</h4>
+            <div class="mb-4">
+                <label for="commentTextarea" class="form-label"><strong>Leave a comment: *</strong></label>
+                <InputTextArea @bind-value="Review.Comment" class="form-control" id="commentTextarea" rows="4"
+                               placeholder="Write your comment here" required></InputTextArea>
+            </div>
+
+            <div class="mb-4">
+                <label for="name" class="form-label"><strong>Name: *</strong></label>
+                <input type="text" class="form-control" id="name" required @bind-value="Review.Name" />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label"><strong>Rate the movie:</strong></label>
+                <div class="mt-0">
+                    <div class="rating">
+                        <input type="radio" id="star10" name="rating" value="10" @onchange="() => Review.Rating = 10" />
+                        <label for="star10" title="10 stars">&#9733;</label>
+                        <input type="radio" id="star9" name="rating" value="9" @onchange="() => Review.Rating = 9" />
+                        <label for="star9" title="9 stars">&#9733;</label>
+                        <input type="radio" id="star8" name="rating" value="8" @onchange="() => Review.Rating = 8" />
+                        <label for="star8" title="8 stars">&#9733;</label>
+                        <input type="radio" id="star7" name="rating" value="7" @onchange="() => Review.Rating = 7" />
+                        <label for="star7" title="7 stars">&#9733;</label>
+                        <input type="radio" id="star6" name="rating" value="6" @onchange="() => Review.Rating = 6" />
+                        <label for="star6" title="6 stars">&#9733;</label>
+                        <input type="radio" id="star5" name="rating" value="5" @onchange="() => Review.Rating = 5" />
+                        <label for="star5" title="5 stars">&#9733;</label>
+
+                        <input type="radio" id="star4" name="rating" value="4" @onchange="() => Review.Rating = 4" />
+                        <label for="star4" title="4 stars">&#9733;</label>
+
+                        <input type="radio" id="star3" name="rating" value="3" @onchange="() => Review.Rating = 3" />
+                        <label for="star3" title="3 stars">&#9733;</label>
+
+                        <input type="radio" id="star2" name="rating" value="2" @onchange="() => Review.Rating = 2" />
+                        <label for="star2" title="2 stars">&#9733;</label>
+
+                        <input type="radio" id="star1" name="rating" value="1" @onchange="() => Review.Rating = 1" />
+                        <label for="star1" title="1 stars">&#9733;</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm" id="submitButton">Submit</button>
+        </div>
+    </EditForm>
+</div>

@@ -1,0 +1,50 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@using nackademin24_umbraco.Models.ViewModels
+@using nackademin24_umbraco.Shared
+
+@inherits UmbracoViewPage<MoviePageViewModel>
+
+@{
+    Layout = "root.cshtml";
+}
+
+<link href="css/movie.css" rel="stylesheet" />
+
+<div class="container movie-detail-container mt-5">
+    <div class="row">
+        <!-- Movie Poster and Details -->
+        <div class="col-md-4">
+            <!-- Movie Poster -->
+            <img src="@Model.Content.Poster" class="poster-image-detail"
+                 onerror="this.onerror=null;this.src='/_framework/no-image-found.png';" alt="Static Movie Title Poster" />
+        </div>
+        <div class="col-md-8">
+            <!-- Movie Details -->
+            <h2 class="movie-title-detail">@Model.Content.Title</h2>
+            <p class="movie-year-detail">
+                @Model.Content.Year | <span class="text-warning">
+                    <i class="fas fa-star"></i>@Model.Content.ImdbRating
+                </span>
+            </p>
+            <p class="movie-runtime-detail">@Model.Content.Runtime</p>
+            <p class="movie-plot-detail">@Model.Content.Plot</p>
+            @{
+                var genre = string.Join(", ", Model.Content.Genre);
+                <p class="movie-plot-detail"><strong>Genre: </strong>@genre</p>
+            }
+
+            <!-- Director and Actors -->
+            <p class="movie-director-detail"><strong>Director: </strong>@Model.Content.Director</p>
+            @{
+                var actors = string.Join(", ", Model.Content.Actors);
+                <p class="movie-actors-detail"><strong>Actors: </strong>@actors</p>
+            }
+
+            <!-- Reviews Section (Moved under actors) -->
+            <div class="reviews-section mt-5">
+                <component type="typeof(FetchReviews)" render-mode="Server" param-imdbid="@Model.Content.ImdbId" />
+            </div>
+        </div>
+    </div>
+    <component type="typeof(SaveReview)" render-mode="Server" param-imdbid="@Model.Content.ImdbId" />
+</div>
